@@ -71,3 +71,51 @@
 // Console.WriteLine(PowerRec(2,10));
 // Console.WriteLine(PowerRecMath(2,10));
 
+// char[] s = {'a', 'b', 'c' , 'd'};
+// int count = s.Length;
+// int n=1;
+// for (int i=0; i<s.Length; i++)
+// {
+//   for (int j=0; j<s.Length; j++) 
+//   {
+//     for (int k=0; k<s.Length; k++) 
+//     {
+//       for (int l=0; l<s.Length; l++) 
+//       {
+//         Console.WriteLine($"{n++,-5}{s[i]}{s[j]}{s[k]}{s[l]}");
+//       }
+//     }
+//   }
+// }
+// int n=1;
+// void FindWords (string alphabet, char[] word, int length = 0)
+// {
+//   if (length == word.Length)
+//   {
+//     Console.WriteLine($"{n++} {new String(word)}");
+//     return;
+//   }
+//   for (int i=0; i<alphabet.Length; i++)
+//   {
+//     word[length]=alphabet[i];
+//     FindWords(alphabet, word, length + 1);
+//   }
+// }
+// FindWords("abcd", new char[2]);
+void CatalogInfo(string path, string indent = "")
+{
+  DirectoryInfo catalog = new DirectoryInfo(path);
+  DirectoryInfo[] catalogs = catalog.GetDirectories();
+  for (int i=0; i<catalogs.Length; i++)
+  {
+    Console.WriteLine($"{indent}{catalogs[i].Name}");
+    CatalogInfo(catalogs[i].FullName, indent + " ");
+  }
+  FileInfo[] files = catalog.GetFiles();
+  for (int i=0; i<files.Length; i++)
+  {
+    Console.WriteLine($"{indent}{files[i].Name}");
+  }
+}
+string path = @"C:\Users\vladi\OneDrive\Documents\Private\Projects\Examples\Example001_HelloConsole";
+CatalogInfo(path);
